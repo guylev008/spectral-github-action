@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const io = require('@actions/io');
 const tc = require('@actions/tool-cache');
 const exec = require("@actions/exec").exec;
+const fs = require('fs');
 
 const workspace = process.env.GITHUB_WORKSPACE;
 const spectralDsn = core.getInput('spectral-dsn')
@@ -67,9 +68,8 @@ async function runSpectral() {
       })
       console.log('done spectral')
 
-    // const summaryPath = process.env.GITHUB_STEP_SUMMARY
-    //   console.log('stdout ',stdout)
-    //   console.log('stderr ',stderr)
+    const summaryPath = process.env.GITHUB_STEP_SUMMARY
+    fs.appendFileSync(summaryPath, 'Hello world!!!');
 }
 
 function getScanCommand() {
