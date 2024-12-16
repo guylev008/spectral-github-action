@@ -13,7 +13,7 @@ jobs:
         uses: ./
         with:
           spectral-dsn: ${{ secrets.SPECTRAL_DSN }}
-          spectral-args: scan --ok
+          spectral-args: scan --ok --json-v2 /dev/stderr
   ubuntu-audit:
     name: Spectral ubuntu audit
     runs-on: ubuntu-latest
