@@ -52,7 +52,23 @@ async function installExecutable(path) {
 
 async function runSpectral() {
     const scanCommand = getScanCommand()
-    await exec(scanCommand)
+    let stdout = ''
+    let stderr = ''
+
+    await exec(scanCommand, [], {
+        listeners: {
+          stdout: (data) => {
+            stdout += data.toString()
+          },
+          stderr: (data) => {
+            stderr += data.toString()
+          },
+        },
+      })
+
+    // const summaryPath = process.env.GITHUB_STEP_SUMMARY
+      console.log('stdout ',stdout)
+      console.log('stderr ',stderr)
 }
 
 function getScanCommand() {
