@@ -54,7 +54,7 @@ async function runSpectral() {
     const scanCommand = getScanCommand()
     let stdout = ''
     let stderr = ''
-
+    console.log('start spectral')
     await exec(scanCommand, [], {
         listeners: {
           stdout: (data) => {
@@ -65,10 +65,11 @@ async function runSpectral() {
           },
         },
       })
+      console.log('done spectral')
 
     // const summaryPath = process.env.GITHUB_STEP_SUMMARY
-      console.log('stdout ',stdout)
-      console.log('stderr ',stderr)
+    //   console.log('stdout ',stdout)
+    //   console.log('stderr ',stderr)
 }
 
 function getScanCommand() {
